@@ -1,128 +1,64 @@
-![](header.png?raw=true)
-# **SUPPORT THE OFFICIAL RELEASE OF SONIC 1 & 2**
-+ Without assets from the official releases, this decompilation will not run.
+![header](https://user-images.githubusercontent.com/29069561/183143615-d7f77921-13cf-4c58-8c5f-6a1e76ea20e2.svg)
 
-+ You can get official releases of Sonic 1 & Sonic 2 from:
-  * Windows
-    * Via Steam, from [Sonic Origins](https://store.steampowered.com/app/1794960)
-    * Via the Epic Games Store, from [Sonic Origins](https://store.epicgames.com/en-US/p/sonic-origins)
-  * iOS
-    * [Sonic 1, Via the App Store](https://apps.apple.com/au/app/sonic-the-hedgehog-classic/id316050001)
-    * [Sonic 2, Via the App Store](https://apps.apple.com/au/app/sonic-the-hedgehog-2-classic/id347415188)
-    * A tutorial for finding the game assets from the iOS versions can be found [here](https://gamebanana.com/tuts/14491).
-  * Android
-    * [Sonic 1, Via Google Play](https://play.google.com/store/apps/details?id=com.sega.sonic1px)
-    * [Sonic 2, Via Google Play](https://play.google.com/store/apps/details?id=com.sega.sonic2.runner)
-    * [Sonic 1, Via Amazon](https://www.amazon.com.au/Sega-of-America-Sonic-Hedgehog/dp/B00D74DVKM)
-    * [Sonic 2, Via Amazon](https://www.amazon.com.au/Sega-of-America-Sonic-Hedgehog/dp/B00HAPRVWS)
-    * A tutorial for finding the game assets from the Android versions can be found [here](https://gamebanana.com/tuts/14492).
+A complete decompilation of Retro Engine v5 and v5Ultimate.
 
-Even if your platform isn't supported by the official releases, you **must** buy or officially download it for the assets (you don't need to run the official release, you just need the game assets).
+# **SUPPORT THE DEVELOPERS OF THE RETRO ENGINE**
+We do not own the Retro Engine in any way, shape or form, and this project would not have been possible had they not developed RSDKv5(U) in the first place. Retro Engine is currently owned by [Evening Star](https://eveningstar.studio/); we highly urge you to follow & support their projects if you enjoyed this project of ours!
 
-If you want to transfer your save(s) from the official mobile version(s), the **Android pre-forever** file path is `Android/data/com.sega.sonic1 or 2/SGame.bin` (other versions may have different file paths). Copy that file into the decompilation's folder with the name `SData.bin`.
+## **DO NOT USE THIS DECOMPILATION PROJECT AS A MEANS TO PIRATE SONIC MANIA OR ANY OTHER RSDKv5(U) GAMES.**
+We do not condone using this project as a means for piracy in any form. This project was made with love and care for the source material and was created for purely educational purposes.
 
 # Additional Tweaks
-* Added a built in script compiler. Similar to the one found in RSDKv3, but tweaked up to match the new syntax for the scripts used in RSDKv4.
-* Added a built in mod loader and API, allowing to easily create and play mods with features such as save file redirection, custom achievements and XML GameConfig data.
-* Custom menu and networking system for Sonic 2 multiplayer, allowing anyone to host and join servers and play 2P VS.
-* There is now a `settings.ini` file that the game uses to load all settings, similar to Sonic Mania.
-* The dev menu can now be accessed from anywhere by pressing the `ESC` key if enabled in the config.
-* The `F12` pause, `F11` step over & fast forward debug features from Sonic Mania have all been ported and are enabled if `devMenu` is enabled in the config.
-* A number of additional dev menu debug features have been added:
-  * `F1` will load the first scene in the Presentation stage list (usually the title screen).
-  * `F2` and `F3` will load the previous and next scene in the current stage list.
-  * `F5` will reload the current scene, as well as all assets and scripts.
-  * `F8` and `F9` will visualize touch screen and object hitboxes.
-  * `F10` will activate a palette overlay that shows the game's 8 internal palettes in real time.
-* Added the idle screen dimming feature from Sonic Mania Plus, as well as allowing the user to disable it or set how long it takes for the screen to dim.
+* Added a built-in mod loader and API allowing to easily create and play mods with features such as save file redirection and XML asset loading, supported by all sub-versions of v5U.
+* Added a built-in shader compiler for backends/platforms that support it.
+* Added various other backends to windows aside from the usual DirectX 9 backends
 
-# How to build
-## Windows
-* Clone the repo, then follow the instructions in the [dependencies readme for Windows](./dependencies/windows/dependencies.txt) to setup dependencies, then build via the visual studio solution.
-* Alternatively, you can grab a prebuilt executable from the releases section.
+# How to Build
+First, follow the steps in [the common dependency README](./dependencies/all/README.md), then follow the steps for your platform of choice:
 
-## Windows via MSYS2 (64-bit Only)
-### Decompilation
-* Download the newest version of the MSYS2 installer from [here](https://www.msys2.org/) and install it.
-* Run the MINGW64 prompt (from the windows Start Menu/MSYS2 64-bit/MSYS2 MinGW 64-bit), when the program starts enter `pacman -Syuu` in the prompt and hit Enter.
-* Press `Y` when it asks if you want to update packages. If it asks you to close the prompt, do so, then restart it and run the same command again. This updates the packages to their latest versions.
-* Install the dependencies with the following command: `pacman -S pkg-config make git mingw-w64-i686-gcc mingw-w64-x86_64-gcc mingw-w64-x86_64-SDL2 mingw-w64-x86_64-libogg mingw-w64-x86_64-libvorbis mingw-w64-x86_64-glew`
-* Clone the repo with the following command: `git clone --recursive https://github.com/Rubberduckycooly/Sonic-1-2-2013-Decompilation.git`
-* Go into the repo you just cloned with `cd Sonic-1-2-2013-Decompilation`.
-* Run `make -f Makefile.msys2 CXX=x86_64-w64-mingw32-g++ CXXFLAGS=-static -j4`.
-  * -j switch is optional, but will make building faster by running it parallel on multiple cores (8 cores would be -j9).
+* ### [Windows](./dependencies/windows/README.md)
 
-## Windows UWP (Phone, Xbox, etc.)
-* Clone the repo, then follow the instructions in the [dependencies readme for Windows](./dependencies/windows/dependencies.txt) and [dependencies readme for UWP](./dependencies/windows-uwp/dependencies.txt) to setup dependencies.
-* Copy your `Data.rsdk` file into `Sonic1Decomp.UWP` or `Sonic2Decomp.UWP` depending on the game, then build and deploy via `RSDKv4.UWP.sln`.
-* You may also need to generate visual assets. To do so, open the Package.appxmanifest file in the designer. Under the Visual Assets tab, select an image of your choice, and click generate.
+* ### [Mac](./dependencies/mac/README.md)
 
-## Linux
-### Decompilation
-* To setup your build enviroment and library dependecies, run the following commands:
-  * Ubuntu (Mint, Pop!_OS, etc...): `sudo apt install build-essential git libsdl2-dev libvorbis-dev libogg-dev libglew-dev libdecor-0-dev`
-    * If you're using Debian, add `libgbm-dev` and `libdrm-dev`.
-  * Fedora Linux: `sudo dnf install g++ SDL2-devel libvorbis-devel libogg-devel glew-devel`
-  * Arch Linux: `sudo pacman -S base-devel git sdl2 libvorbis libogg glew`
-* Clone the repo and its other dependencies with the following command: `git clone --recursive https://github.com/Rubberduckycooly/Sonic-1-2-2013-Decompilation.git`
-* Go into the repo you just cloned with `cd Sonic-1-2-2013-Decompilation`.
-* Run `make -j5`.
-    * If your distro is using gcc 8.x.x, then add the argument `LIBS=-lstdc++fs`.
-    * -j switch is optional, but will make building faster by running it parallel on multiple cores (8 cores would be -j9).
+* ## Linux/Switch
+  * Follow the [GL3 README](./dependencies/gl3/README.md) to setup the renderer's dependencies.
+  * **For Linux: libtheora, libogg, and SDL for audio will be required:**
+    * On Ubuntu: `sudo apt install libsdl2-dev libtheora-dev`
+    * On Fedora: `sudo dnf install SDL2-devel libtheora-devel`
+    * On Arch: `sudo pacman -S sdl2 libtheora` 
+  * Then, for both platforms, the makefile can be used by running `make`.
+    * For Switch, pass `PLATFORM=Switch` to the `make` command to ensure you're building for Switch.
 
-## Mac
-* Clone the repo, follow the instructions in the [dependencies readme for Mac](./dependencies/mac/dependencies.txt) to setup dependencies, then build via the Xcode project.
-* A Mac build of v1.3.0 by [Sappharad](https://github.com/Sappharad) can be found [here](https://github.com/Sappharad/Sonic-1-2-2013-Decompilation/releases/tag/1.3.0mac).
+* ### [Android](./dependencies/android/README.md)
 
-## Android
-* Clone the repo, then follow the instructions in the [dependencies readme for Android](./dependencies/android/dependencies.txt).
-* Ensure the symbolic links in `android/app/jni` are correct. If not, fix them with the following on Windows:
-  * `mklink /D src ..\..\..`
-  * `mklink /D SDL ..\..\..\dependencies\android\SDL`
-* Open `android/` in Android Studio, install the NDK and everything else that it asks for, and build.
+### Other Platforms
+Currently, the only officially supported platforms are the ones listed above. However, the backend is very modular, so the codebase is very multiplatform.
 
-## Unofficial Branches
-Follow the installation instructions in the readme of each branch.
-* For the **PlayStation Vita**, go to [Xeeynamo's fork](https://github.com/xeeynamo/Sonic-1-2-2013-Decompilation).
-* For the **Nintendo Switch**, go to [heyjoeway's fork](https://github.com/heyjoeway/Sonic-1-2-2013-Decompilation).
-* For the **Nintendo 3DS**, go to [JeffRuLz's fork](https://github.com/JeffRuLz/Sonic-1-2-2013-Decompilation).
-  * A New Nintendo 3DS is required for the games to run smoothly.
-* To play it on the web using **Wasm**, go to [mattConn's fork](https://github.com/mattConn/Sonic-Decompilation-WASM).
-
-Because these branches are unofficial, we can't provide support for them and they may not be up-to-date.
-
-## Other Platforms
-Currently the only supported platforms are the ones listed above, however the backend uses libogg, libvorbis & SDL2 to power it (as well as tinyxml2 for the mod API and asio for networking), so the codebase is very multiplatform.
-If you're able to, you can clone this repo and port it to a platform not on the list.
-
-# Server
-The multiplayer server requires Python 3.8 or later. You can download Python [here](https://www.python.org/downloads/).
-To use the server, open Command Prompt in the folder [Server.py](https://github.com/Rubberduckycooly/Sonic-1-2-2013-Decompilation/blob/main/Server/Server.py) is located in, then run the command `py -3 Server.py [local IPv4 address] [port] debug`. You can find your local IPv4 address using the command `ipconfig`.
-Note that the CPP server found in the Server folder in the repo has been deprecated and no longer works. It has been kept in the repo for reference purposes.
+**However,** since release, there have been a multitude of forks made by the community (keep in mind that many of these ports are still a WIP!:) 
+* ### [WebASM](https://github.com/heyjoeway/RSDKv5-Decompilation/tree/emscripten) by heyjoeway 
+* ### [New 3DS](https://github.com/SaturnSH2x2/RSDKv5-Decompilation/tree/3ds-main) by SaturnSH2x2
+* ### [Wii U](https://github.com/Radfordhound/RSDKv5-Decompilation) by Radfordhound
+* ### [Wii U](https://github.com/Clownacy/Sonic-Mania-Decompilation) by Clownacy
+* ### [Vita](https://github.com/SonicMastr/Sonic-Mania-Vita) by SonicMastr
+* #### and a [general optimization fork](https://github.com/smb123w64gb/RSDKv5-Decompilation) by smb123w64gb
 
 # FAQ
-### Q: I'm using an RSDK file from Sonic Origins and there's no audio, what's wrong?
-A: Sonic Origins doesn't have any music or sound effects contained in the games' data files, instead storing and handling all in-game audio itself through Hedgehog Engine 2. You can fix this by simply inserting the audio files from the mobile versions of the games.
-
-### Q: I'm using an RSDK file from Sonic Origins and the main menu and pause screen won't load, what's wrong?
-A: Similar issue to above, Origins removes some of the assets from the original mobile versions' menus. Also similar to above, the fix is to insert those files from the mobile versions.
-
 ### Q: The screen is tearing, how do I fix it?
 A: Try turning on VSync in settings.ini.
 
-### Q: I found a bug!
-A: Submit an issue in the issues tab and we _might_ fix it in the main branch. Don't expect any future releases, however.
+### Q: I found a bug/I have a feature request!
+A: Submit an issue in the issues tab and we _might_ fix it in the main branch. Don't expect any major future releases, however.
 
-### Q: Will you do a decompilation for Sonic CD (2011)?
-A: I already have! You can find it [here](https://github.com/Rubberduckycooly/Sonic-CD-11-Decompilation).
+### Q: Is there a decompilation for RSDKv3 and/or RSDKv4 alone?
+A: There is! You can find RSDKv3 [here](https://github.com/Rubberduckycooly/Sonic-CD-11-Decompilation) and RSDKv4 [here](https://github.com/Rubberduckycooly/Sonic-1-2-2013-Decompilation).
 
-### Q: Will you do a decompilation for Sonic Mania?
-A: I already have! You can find the source code for Sonic Mania [here](https://github.com/Rubberduckycooly/Sonic-Mania-Decompilation) and RSDKv5 which is used to run it [here](https://github.com/Rubberduckycooly/RSDKv5-Decompilation).
+### Q: Are there anymore decompilation projects in the works, such as other RSDK versions?
+A: Absolutely not. This project took about 1 and a half years to do, and between the last two and this one, we're done with decompiling, at least for the time being. Please do not expect any more decompilations from us, Sonic or otherwise!
 
 # Special Thanks
-* [Chuli](https://github.com/MGRich) for helping me fix bugs, tweaking up my sometimes sloppy code and generally being really helpful and fun to work with on this project.
-* The Weigman for creating the header you see up here along with similar assets.
-* Everyone in the [Retro Engine Modding Server](https://dc.railgun.works/retroengine) for being supportive of me and for giving me a place to show off these things that I've found.
+* [Chuli](https://github.com/MGRich) for leading ModAPI development, porting to other platforms, general decompilation assistance, helping me fix bugs, tweaking up my sometimes sloppy code and generally being really helpful and fun to work with on this project
+* The Weigman for creating the asset bases such as the header and icons (originally made for RSDKv3 and v4, modified by Chuli)
+* Everyone in the [Retro Engine Modding Server](https://dc.railgun.works/retroengine) for being supportive of me and for giving me a place to show off these things that I've found
 
 # Contact:
 Join the [Retro Engine Modding Discord Server](https://dc.railgun.works/retroengine) for any extra questions you may need to know about the decompilation or modding it.

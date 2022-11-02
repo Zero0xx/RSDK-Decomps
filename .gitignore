@@ -29,38 +29,10 @@ bin/
 [Oo]bj/
 cmake/
 
-#dependencies
-[Dd]ependencies/windows-uwp/**
-[Dd]ependencies/windows/*
-[Dd]ependencies/android/*
-[Dd]ependencies/mac/libogg/
-[Dd]ependencies/mac/libvorbis/
-[Dd]ependencies/mac/SDL2.framework/
-[Dd]ependencies/mac/glew/
-[Dd]ependencies/ios/Ogg.framework/
-[Dd]ependencies/ios/Vorbis.framework/
-[Dd]ependencies/ios/SDL2.framework/
-[Dd]ependencies/ios/libSDLMain.a
-![Dd]ependencies/ios/[Ii]nfo.plist
-[Dd]ependencies/all/*
-![Dd]ependencies/all/dependencies.txt
-![Dd]ependencies/all/stb-image
-![Dd]ependencies/all/tinyxml2
-![Dd]ependencies/all/asio
-![Dd]ependencies/windows/dependencies.txt
-![Dd]ependencies/ios/dependencies.txt
-![Dd]ependencies/mac/dependencies.txt
-![Dd]ependencies/windows-uwp/dependencies.txt
-![Dd]ependencies/android/dependencies.txt
-![Dd]ependencies/android/libogg/include/ogg/config_types.h
-
-# UWP
-**/Generated Files
-**/BundleArtifacts
-**/AppPackages
-
 # safety
 *.rsdk
+Sonic Mania/Static/*
+mods/
 
 #OSX files
 *.DS_Store
@@ -268,16 +240,9 @@ ModelManifest.xml
 
 Ignored/
 
-# Compiled object files
-objects/
-
 # Android specific
 .gradle/
 .idea/
-android/key/
 android/local.properties
 
-# Linux
-.flatpak-builder
-flatpak/*.apk
-build-dir
+*.res
